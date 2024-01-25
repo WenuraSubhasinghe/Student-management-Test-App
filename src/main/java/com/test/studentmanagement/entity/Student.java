@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,10 +17,15 @@ public class Student {
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
+
+    @Column(unique = true, nullable = false)
     private String email;
-    private String address;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "department_id", nullable = false)
+    @JoinColumn(name = "department_id", referencedColumnName = "id", nullable = false)
     private Department department;
 }

@@ -1,14 +1,10 @@
 package com.test.studentmanagement.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentDto {
@@ -17,6 +13,6 @@ public class StudentDto {
     private String lastName;
     private LocalDate dateOfBirth;
     private String email;
-    private String address;
-    private Long departmentId;
+    private AdressDto address;
+    private DepartmentDto department;
 }

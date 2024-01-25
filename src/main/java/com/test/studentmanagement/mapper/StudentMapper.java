@@ -8,7 +8,6 @@ import com.test.studentmanagement.service.DepartmentService;
 public class StudentMapper {
 
     private DepartmentService departmentService;
-
     public static StudentDto mapToStudentDto(Student student){
         return new StudentDto(
                 student.getId(),
@@ -16,11 +15,10 @@ public class StudentMapper {
                 student.getLastName(),
                 student.getDateOfBirth(),
                 student.getEmail(),
-                student.getAddress(),
-                student.getDepartment().getId()
+                AddressMapper.mapToAddressDto(student.getAddress()),
+                DepartmentMapper.mapToDepartmentDto(student.getDepartment())
         );
     }
-
     public static Student mapToStudent(StudentDto studentDto, DepartmentService departmentService){
         Student student = new Student();
         student.setId(studentDto.getId());
@@ -28,11 +26,13 @@ public class StudentMapper {
         student.setLastName(studentDto.getLastName());
         student.setDateOfBirth(studentDto.getDateOfBirth());
         student.setEmail(studentDto.getEmail());
-        student.setAddress(studentDto.getAddress());
-
-        if(studentDto.getDepartmentId() != null){
-            Department department = departmentService.getDepartmentEntityById(studentDto.getDepartmentId());
-            student.setDepartment(department);
+        student.setAddress(AddressMapper.mapToAddress(studentDto.getAddress()));
+//Build code to Retrieve existing Department for Student
+        Department existingDepartment = departmentService.getDepartmentEntityById(studentDto.getDepartment().getId());
+        if(existingDepartment != null){
+            student.setDepartment(existingDepartment);
+        } else {
+            student.setDepartment(DepartmentMapper.mapToDepartment(studentDto.getDepartment()));
         }
         return student;
     }

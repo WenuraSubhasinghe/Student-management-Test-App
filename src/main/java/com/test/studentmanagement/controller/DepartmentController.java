@@ -18,21 +18,21 @@ public class DepartmentController {
 
     //Build Add Departments REST API
     @PostMapping
-    public ResponseEntity<DepartmentDto> createDepartment(@RequestBody DepartmentDto departmentDto){
+    public ResponseEntity<DepartmentDto> createDepartment(@RequestBody DepartmentDto departmentDto) {
         DepartmentDto savedDepartment = departmentService.createDepartment(departmentDto);
         return new ResponseEntity<>(savedDepartment, HttpStatus.CREATED);
     }
 
     //Build Get Department REST API
     @GetMapping("{id}")
-    public ResponseEntity<DepartmentDto> getDepartmentById(@PathVariable("id") Long departmentId){
+    public ResponseEntity<DepartmentDto> getDepartmentById(@PathVariable("id") Long departmentId) {
         DepartmentDto departmentDto = departmentService.getDepartmentById(departmentId);
         return ResponseEntity.ok(departmentDto);
     }
 
     //Build Get All Departments Rest API
     @GetMapping
-    public ResponseEntity<List<DepartmentDto>> getAllDepartments(){
+    public ResponseEntity<List<DepartmentDto>> getAllDepartments() {
         List<DepartmentDto> departments = departmentService.getAllDepartments();
         return ResponseEntity.ok(departments);
     }
