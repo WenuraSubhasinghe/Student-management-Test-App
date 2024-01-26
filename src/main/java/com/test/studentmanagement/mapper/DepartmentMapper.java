@@ -1,19 +1,20 @@
 package com.test.studentmanagement.mapper;
 
-import com.test.studentmanagement.dto.DepartmentDto;
+import com.test.studentmanagement.dto.DepartmentDTO;
 import com.test.studentmanagement.entity.Department;
 
 public class DepartmentMapper {
-    public static DepartmentDto mapToDepartmentDto(Department department){
-        return new DepartmentDto(
-                department.getId(),
-                department.getDepartmentName()
+    public static DepartmentDTO mapToDepartmentDto(Department department) {
+        return new DepartmentDTO(
+            department.getId(),
+            department.getDepartmentName()
         );
     }
-    public static Department mapToDepartment(DepartmentDto departmentDto){
+
+    public static Department mapToDepartment(DepartmentDTO departmentDTO) {
         Department department = new Department();
-        department.setId(department.getId());
-        department.setDepartmentName(departmentDto.getDepartmentName());
+        department.setId(departmentDTO.getId());
+        department.setDepartmentName(departmentDTO.getDepartmentName());
         return department;
     }
 }

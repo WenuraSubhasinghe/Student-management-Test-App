@@ -2,10 +2,11 @@ package com.test.studentmanagement.dto;
 
 import lombok.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class DepartmentDto {
+public class AddressDTO {
     private Long id;
-    private String departmentName;
+    private String street;
+    private String city;
 }

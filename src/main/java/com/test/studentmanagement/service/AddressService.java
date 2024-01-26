@@ -1,7 +1,8 @@
 package com.test.studentmanagement.service;
 
-import com.test.studentmanagement.dto.AdressDto;
+
+import com.test.studentmanagement.dto.AddressDTO;
 
 public interface AddressService {
-    AdressDto getAddressById(Long addressId);
+    AddressDTO getAddressById(Long addressId);
 }

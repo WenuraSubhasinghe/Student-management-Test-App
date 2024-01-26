@@ -1,49 +1,45 @@
 package com.test.studentmanagement.controller;
 
-import com.test.studentmanagement.dto.StudentDto;
+import com.test.studentmanagement.dto.StudentDTO;
 import com.test.studentmanagement.service.StudentService;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@AllArgsConstructor
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
+
+    @Autowired
     private StudentService studentService;
 
-    //Build Add Student REST API
     @PostMapping
-    public ResponseEntity<StudentDto> createStudent(@RequestBody StudentDto studentDto) {
-        StudentDto savedStudent = studentService.createStudent(studentDto);
+    public ResponseEntity<StudentDTO> createStudent(@RequestBody StudentDTO studentDTO) {
+        StudentDTO savedStudent = studentService.createStudent(studentDTO);
         return new ResponseEntity<>(savedStudent, HttpStatus.CREATED);
     }
 
-    //Build Get Student REST API
     @GetMapping("{id}")
-    public ResponseEntity<StudentDto> getStudentById(@PathVariable("id") Long studentId) {
-        StudentDto studentDto = studentService.getStudentById(studentId);
-        return ResponseEntity.ok(studentDto);
+    public ResponseEntity<StudentDTO> getStudentById(@PathVariable("id") Long studentId) {
+        StudentDTO studentDTO = studentService.getStudentById(studentId);
+        return ResponseEntity.ok(studentDTO);
     }
 
-    //Build Get All Students REST API
     @GetMapping
-    public ResponseEntity<List<StudentDto>> getAllStudents() {
-        List<StudentDto> students = studentService.getAllStudents();
+    public ResponseEntity<List<StudentDTO>> getAllStudents() {
+        List<StudentDTO> students = studentService.getAllStudents();
         return ResponseEntity.ok(students);
     }
 
-    //Build Update Student REST API
     @PutMapping("{id}")
-    public ResponseEntity<StudentDto> updateStudent(@PathVariable("id") Long studentId, @RequestBody StudentDto updatedStudent) {
-        StudentDto studentDto = studentService.updateStudent(studentId, updatedStudent);
-        return ResponseEntity.ok(studentDto);
+    public ResponseEntity<StudentDTO> updateStudent(@PathVariable("id") Long studentId, @RequestBody StudentDTO updatedStudent) {
+        StudentDTO studentDTO = studentService.updateStudent(studentId, updatedStudent);
+        return ResponseEntity.ok(studentDTO);
     }
 
-    //Build Delete Student REST API
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteStudent(@PathVariable("id") Long studentId) {
         studentService.deleteStudent(studentId);
